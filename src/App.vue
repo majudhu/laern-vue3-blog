@@ -1,6 +1,21 @@
 <template>
   <HelloWorld msg="Welcome to Learn Vue 3 Blog" />
   <BlogPost v-for="post in posts" :key="post.title" :post="post" />
+  <form @submit.prevent="submitForm">
+    <div>
+      <label>Title: <input name="title" required /> </label>
+    </div>
+    <div>
+      <label>Text: <input name="text" required /> </label>
+    </div>
+    <div>
+      <label>Image: <input name="image" /> </label>
+    </div>
+    <div>
+      <label>URL: <input name="url" /> </label>
+    </div>
+    <button type="submit">Add post</button>
+  </form>
 </template>
 
 <script>
@@ -12,6 +27,20 @@ export default {
   components: {
     HelloWorld,
     BlogPost,
+  },
+  methods: {
+    addPost(title, text, image, url) {
+      this.posts.push({ title, text, image, url });
+    },
+    submitForm({ target }) {
+      const { title, text, image, url } = target.elements;
+      this.posts.push({
+        title: title.value,
+        text: text.value,
+        image: image.value,
+        url: url.value,
+      });
+    },
   },
   data() {
     return {
