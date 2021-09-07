@@ -1,23 +1,17 @@
 <template>
   <HelloWorld msg="Welcome to Learn Vue 3 Blog" />
-  <div v-for="{ title, image, text, url } in posts" v-bind:key="title">
-    <h2>{{ title }}</h2>
-    <img v-bind:src="image" />
-    <p>
-      {{ text }}
-      <a v-if="!!url" v-bind:href="url">Open</a>
-    </p>
-    <hr />
-  </div>
+  <BlogPost v-for="post in posts" :key="post.title" :post="post" />
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import BlogPost from "./components/BlogPost.vue";
 
 export default {
   name: "App",
   components: {
     HelloWorld,
+    BlogPost,
   },
   data() {
     return {
