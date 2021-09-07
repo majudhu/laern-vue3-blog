@@ -1,11 +1,11 @@
 <template>
   <HelloWorld msg="Welcome to Learn Vue 3 Blog" />
-  <div v-for="post in posts" v-bind:key="post.title">
-    <h2>{{ post.title }}</h2>
-    <img v-bind:src="post.image" />
+  <div v-for="{ title, image, text, url } in posts" v-bind:key="title">
+    <h2>{{ title }}</h2>
+    <img v-bind:src="image" />
     <p>
-      {{ post.text }}
-      <a v-if="!!post.url" v-bind:href="post.url">Open</a>
+      {{ text }}
+      <a v-if="!!url" v-bind:href="url">Open</a>
     </p>
     <hr />
   </div>
