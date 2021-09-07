@@ -1,16 +1,53 @@
 <template>
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld msg="Welcome to Learn Vue 3 Blog" />
+  <div v-for="post in posts" v-bind:key="post.title">
+    <h2>{{ title }}</h2>
+    <img v-bind:src="post.image" />
+    <p>
+      {{ post.text }}
+      <a v-if="!!post.url" v-bind:href="post.url">Open</a>
+    </p>
+    <hr />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+  },
+  data() {
+    return {
+      posts: [
+        {
+          title: "Blog post 1",
+          text: "This is the blog post 1 text",
+          image: "https://source.unsplash.com/lFmuWU0tv4M/400x400",
+          url: "https://unsplash.com/photos/lFmuWU0tv4M",
+        },
+        {
+          title: "Textures & Patterns",
+          text: "Whether you’re looking for stunning macro-photography or shots of complex architectural shapes — you’ve come to the right place.",
+          image: "https://source.unsplash.com/qXbjMePYwkE/400x400",
+          url: "https://unsplash.com/t/textures-patterns",
+        },
+        {
+          title: "Street Photography",
+          text: "From early morning commutes to neon-tinted nights, our streets have become the fabric of our shared history. This category encompasses street photography in every form.",
+          image: "https://source.unsplash.com/buYlndcNnjM/400x400",
+          url: "hhttps://unsplash.com/t/street-photography",
+        },
+        {
+          title: "Blank",
+          text: "No image no url",
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style>
