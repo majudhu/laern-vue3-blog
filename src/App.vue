@@ -1,7 +1,7 @@
 <template>
   <HelloWorld msg="Welcome to Learn Vue 3 Blog" />
   <div v-for="post in posts" v-bind:key="post.title">
-    <h2>{{ title }}</h2>
+    <h2>{{ post.title }}</h2>
     <img v-bind:src="post.image" />
     <p>
       {{ post.text }}
