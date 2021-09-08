@@ -34,7 +34,7 @@ export default {
         )
       ),
       submitForm({ target }) {
-        const { title, text, image, url } = target.elements;
+        const { text, image, url } = target.elements;
         props.addPost(title.value, text.value, image.value, url.value);
         target.reset();
         title.value = "";
