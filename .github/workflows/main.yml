@@ -17,8 +17,6 @@ jobs:
           path: ~/.npm
           key: npm-cache
 
-      - run: du -sh ~/.npm
-
       - run: npm ci
       - run: du -sh ~/.npm
 
