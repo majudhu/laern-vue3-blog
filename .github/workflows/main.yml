@@ -9,9 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
-        with: { path: ~/.npm, key: npm-cache }
-
       - run: npm ci
 
       - run: npm run lint
