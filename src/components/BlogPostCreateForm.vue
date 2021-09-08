@@ -25,21 +25,18 @@ export default {
   props: { posts: Array, addPost: Function },
   setup(props) {
     const title = ref("");
-    return {
-      title,
-      titleNotUnique: computed(() =>
-        props.posts.some(
-          (p) =>
-            p.title.trim().toLowerCase() == title.value.trim().toLowerCase()
-        )
-      ),
-      submitForm({ target }) {
-        const { text, image, url } = target.elements;
-        props.addPost(title.value, text.value, image.value, url.value);
-        target.reset();
-        title.value = "";
-      },
+    const titleNotUnique = computed(() =>
+      props.posts.some(
+        (p) => p.title.trim().toLowerCase() == title.value.trim().toLowerCase()
+      )
+    );
+    const submitForm = ({ target }) => {
+      const { text, image, url } = target.elements;
+      props.addPost(title.value, text.value, image.value, url.value);
+      target.reset();
+      title.value = "";
     };
+    return { title, titleNotUnique, submitForm };
   },
 };
 </script>

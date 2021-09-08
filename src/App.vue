@@ -27,12 +27,9 @@ export default {
   },
   setup() {
     const posts = reactive(SAMPLE_POSTS);
-    return {
-      posts,
-      addPost(title, text, image, url) {
-        posts.push({ title, text, image, url });
-      },
-    };
+    const addPost = (title, text, image, url) =>
+      posts.push({ title, text, image, url });
+    return { posts, addPost };
   },
 };
 </script>
