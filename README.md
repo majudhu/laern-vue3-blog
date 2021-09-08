@@ -1,4 +1,6 @@
-# vue3-blog
+# Learn Vue 3 Blog
+
+https://majudhu.github.io/learn-vue3-blog/
 
 ## Project setup
 ```
