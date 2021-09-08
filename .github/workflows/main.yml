@@ -7,14 +7,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - run: ls -a
 
       - uses: actions/checkout@v2
 
       - run: du -sh ~/.npm
-        continue-on-error: true
+        if: always()
 
       - uses: actions/cache@v2
         with:
