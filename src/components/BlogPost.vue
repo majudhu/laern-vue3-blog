@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h2>{{ post.title }}</h2>
-    <img :src="post.image" />
+    <h2>{{ title }}</h2>
+    <img :src="image" />
     <p>
-      {{ post.text }}
-      <a v-if="!!post.url" :href="post.url">Open</a>
+      {{ text }}
+      <a v-if="!!url" :href="url">Open</a>
     </p>
     <hr />
   </div>
@@ -13,17 +13,9 @@
 <script>
 export default {
   name: "BlogPost",
-  props: {
-    post: {
-      title: String,
-      text: String,
-      image: String,
-      url: String,
-    },
-  },
+  props: { title: String, text: String, image: String, url: String },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 </style>

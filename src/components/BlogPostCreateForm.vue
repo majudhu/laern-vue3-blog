@@ -19,29 +19,27 @@
 </template>
 
 <script>
+import { computed, ref } from "@vue/reactivity";
 export default {
   name: "BlogPostCreateForm",
-  props: {
-    posts: Array,
-    addPost: Function,
-  },
-  methods: {
-    submitForm({ target }) {
-      const { title, text, image, url } = target.elements;
-      this.addPost(title.value, text.value, image.value, url.value);
-      this.title = "";
-      target.reset();
-    },
-  },
-  computed: {
-    titleNotUnique() {
-      return this.posts.some(
-        (p) => p.title?.toLowerCase() == this.title?.toLowerCase()
-      );
-    },
-  },
-  data() {
-    return { title: "" };
+  props: { posts: Array, addPost: Function },
+  setup(props) {
+    const title = ref("");
+    return {
+      title,
+      titleNotUnique: computed(() =>
+        props.posts.some(
+          (p) =>
+            p.title.trim().toLowerCase() == title.value.trim().toLowerCase()
+        )
+      ),
+      submitForm({ target }) {
+        const { title, text, image, url } = target.elements;
+        props.addPost(title.value, text.value, image.value, url.value);
+        target.reset();
+        title.value = "";
+      },
+    };
   },
 };
 </script>
