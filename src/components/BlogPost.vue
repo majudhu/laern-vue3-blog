@@ -11,10 +11,5 @@
 </template>
 
 <script setup>
-defineProps({
-  title: String,
-  text: String,
-  image: String,
-  url: String,
-});
+defineProps({ title: String, text: String, image: String, url: String });
 </script>

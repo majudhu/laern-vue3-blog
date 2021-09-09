@@ -32,8 +32,7 @@ const titleNotUnique = computed(() =>
 );
 
 function submitForm() {
-  const { title, text, image, url } = formData;
-  props.addPost(title, text, image, url);
+  props.addPost(formData.title, formData.text, formData.image, formData.url);
   formData.title = formData.text = formData.image = formData.url = "";
 }
 </script>
