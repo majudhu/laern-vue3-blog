@@ -2,43 +2,40 @@
   <form @submit.prevent="submitForm">
     <h2>Add a blog post</h2>
     <div>
-      <label>Title: <input v-model="title" required /></label>
+      <label>Title: <input v-model="formData.title" required /></label>
       <span v-if="titleNotUnique" class="text-red">Title not unique</span>
     </div>
     <div>
-      <label>Text: <input v-model="text" required /> </label>
+      <label>Text: <input v-model="formData.text" required /> </label>
     </div>
     <div>
-      <label>Image: <input v-model="image" /> </label>
+      <label>Image: <input v-model="formData.image" /> </label>
     </div>
     <div>
-      <label>URL: <input v-model="url" /> </label>
+      <label>URL: <input v-model="formData.url" /> </label>
     </div>
     <button type="submit" :disabled="titleNotUnique">Add post</button>
   </form>
 </template>
 
-<script>
-import { computed, reactive, toRefs } from "@vue/reactivity";
-export default {
-  name: "BlogPostCreateForm",
-  props: { posts: Array, addPost: Function },
-  setup(props) {
-    const formData = reactive({ title: "", text: "", image: "", url: "" });
-    const titleNotUnique = computed(() =>
-      props.posts.some(
-        (p) =>
-          p.title.trim().toLowerCase() == formData.title.trim().toLowerCase()
-      )
-    );
-    function submitForm() {
-      const { title, text, image, url } = formData;
-      props.addPost(title, text, image, url);
-      formData.title = formData.text = formData.image = formData.url = "";
-    }
-    return { ...toRefs(formData), titleNotUnique, submitForm };
-  },
-};
+<script setup>
+import { computed, reactive } from "@vue/reactivity";
+
+const props = defineProps({ posts: Array, addPost: Function });
+
+const formData = reactive({ title: "", text: "", image: "", url: "" });
+
+const titleNotUnique = computed(() =>
+  props.posts.some(
+    (p) => p.title.trim().toLowerCase() == formData.title.trim().toLowerCase()
+  )
+);
+
+function submitForm() {
+  const { title, text, image, url } = formData;
+  props.addPost(title, text, image, url);
+  formData.title = formData.text = formData.image = formData.url = "";
+}
 </script>
 
 <style>

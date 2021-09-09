@@ -13,25 +13,15 @@
   <BlogPostCreateForm :posts="posts" :addPost="addPost" />
 </template>
 
-<script>
+<script setup>
 import BlogPost from "./components/BlogPost.vue";
 import BlogPostCreateForm from "./components/BlogPostCreateForm.vue";
 import SAMPLE_POSTS from "./assets/sample_posts.json";
 import { reactive } from "@vue/reactivity";
 
-export default {
-  name: "App",
-  components: {
-    BlogPost,
-    BlogPostCreateForm,
-  },
-  setup() {
-    const posts = reactive(SAMPLE_POSTS);
-    const addPost = (title, text, image, url) =>
-      posts.push({ title, text, image, url });
-    return { posts, addPost };
-  },
-};
+const posts = reactive(SAMPLE_POSTS);
+const addPost = (title, text, image, url) =>
+  posts.push({ title, text, image, url });
 </script>
 
 <style>

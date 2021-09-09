@@ -36,7 +36,13 @@
     "ignorePatterns": [
       "/docs"
     ],
-    "rules": {}
+    "rules": {},
+    "globals": {
+      "defineProps": "readonly",
+      "defineEmits": "readonly",
+      "defineExpose": "readonly",
+      "withDefaults": "readonly"
+    }
   },
   "browserslist": [
     "> 1%",

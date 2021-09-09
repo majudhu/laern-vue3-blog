@@ -10,9 +10,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "BlogPost",
-  props: { title: String, text: String, image: String, url: String },
-};
+<script setup>
+defineProps({
+  title: String,
+  text: String,
+  image: String,
+  url: String,
+});
 </script>
