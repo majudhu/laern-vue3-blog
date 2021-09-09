@@ -42,9 +42,6 @@ export default {
 </script>
 
 <style>
-body {
-  font-family: sans-serif;
-}
 .text-red {
   color: red;
 }

@@ -16,6 +16,3 @@ export default {
   props: { title: String, text: String, image: String, url: String },
 };
 </script>
-
-<style scoped>
-</style>
