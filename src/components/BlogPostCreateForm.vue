@@ -2,41 +2,41 @@
   <form @submit.prevent="submitForm">
     <h2>Add a blog post</h2>
     <div>
-      <label>Title: <input name="title" required v-model="title" /></label>
+      <label>Title: <input v-model="title" required /></label>
       <span v-if="titleNotUnique" class="text-red">Title not unique</span>
     </div>
     <div>
-      <label>Text: <input name="text" required /> </label>
+      <label>Text: <input v-model="text" required /> </label>
     </div>
     <div>
-      <label>Image: <input name="image" /> </label>
+      <label>Image: <input v-model="image" /> </label>
     </div>
     <div>
-      <label>URL: <input name="url" /> </label>
+      <label>URL: <input v-model="url" /> </label>
     </div>
     <button type="submit" :disabled="titleNotUnique">Add post</button>
   </form>
 </template>
 
 <script>
-import { computed, ref } from "@vue/reactivity";
+import { computed, reactive, toRefs } from "@vue/reactivity";
 export default {
   name: "BlogPostCreateForm",
   props: { posts: Array, addPost: Function },
   setup(props) {
-    const title = ref("");
+    const formData = reactive({ title: "", text: "", image: "", url: "" });
     const titleNotUnique = computed(() =>
       props.posts.some(
-        (p) => p.title.trim().toLowerCase() == title.value.trim().toLowerCase()
+        (p) =>
+          p.title.trim().toLowerCase() == formData.title.trim().toLowerCase()
       )
     );
-    const submitForm = ({ target }) => {
-      const { text, image, url } = target.elements;
-      props.addPost(title.value, text.value, image.value, url.value);
-      target.reset();
-      title.value = "";
-    };
-    return { title, titleNotUnique, submitForm };
+    function submitForm() {
+      const { title, text, image, url } = formData;
+      props.addPost(title, text, image, url);
+      formData.title = formData.text = formData.image = formData.url = "";
+    }
+    return { ...toRefs(formData), titleNotUnique, submitForm };
   },
 };
 </script>
