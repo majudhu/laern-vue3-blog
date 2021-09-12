@@ -31,8 +31,7 @@
 </template>
 
 <script setup>
-import { computed, reactive } from "@vue/reactivity";
-import { defineEmits, defineProps } from 'vue';
+import { computed, defineEmits, defineProps, reactive } from "vue";
 
 const props = defineProps({ posts: Array });
 const emit = defineEmits(["addPost"]);

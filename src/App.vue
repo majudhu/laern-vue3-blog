@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { reactive } from "@vue/reactivity";
+import { reactive } from "vue";
 import SAMPLE_POSTS from "./assets/sample_posts.json";
 import BlogPost from "./components/BlogPost.vue";
 import BlogPostCreateForm from "./components/BlogPostCreateForm.vue";
