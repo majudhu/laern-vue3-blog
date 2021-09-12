@@ -11,5 +11,7 @@
 </template>
 
 <script setup>
+import { defineProps } from 'vue';
+
 defineProps({ title: String, text: String, image: String, url: String });
 </script>

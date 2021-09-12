@@ -37,12 +37,7 @@
       "/docs"
     ],
     "rules": {},
-    "globals": {
-      "defineProps": "readonly",
-      "defineEmits": "readonly",
-      "defineExpose": "readonly",
-      "withDefaults": "readonly"
-    }
+    "globals": {}
   },
   "browserslist": [
     "> 1%",
