@@ -1,7 +1,8 @@
-name: vuejs-static-build
+name: vue static build and push to github pages
 
-on: workflow_dispatch
-#  push: { branches: [main] }
+on:
+  workflow_dispatch:
+  push: { branches: [main] }
 
 jobs:
   build:
@@ -9,7 +10,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: npm ci && npm run lint && npm run build
+      - run: |
+          echo "commit_msg=`git log -1 --format=format:%s`" >> $GITHUB_ENV
+          echo "origin_url=`git remote get-url origin`" >> $GITHUB_ENV
+          echo "auth_token=`git config http.https://github.com/.extraheader`" >> $GITHUB_ENV
 
-      - uses: actions/upload-artifact@v2
-        with: { name: static-build, path: dist }
+      - run: |
+          npm ci
+          npm run lint
+          npm run build
+          cd dist
+          git init --initial-branch=gh-pages
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git config http.https://github.com/.extraheader "${{ env.auth_token }}"
+          git add -A
+          git commit -m "${{ env.commit_msg }}"
+          git push -f "${{ env.origin_url }}"
+
+      # - uses: actions/upload-artifact@v2
+      #   with: { name: static-build, path: docs }
