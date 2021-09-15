@@ -20,7 +20,7 @@ jobs:
           git config user.email github-actions@github.com
           git add -A
           git commit -m "$(git -C .. log -1 --format=format:%s)"
-          git push -f "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f "https://git:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
 
       # - uses: actions/upload-artifact@v2
       #   with: { name: static-build, path: docs }
